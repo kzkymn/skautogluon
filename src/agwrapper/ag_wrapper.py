@@ -4,13 +4,14 @@ from typing import Dict, List, Optional, Union
 from autogluon.tabular import TabularPredictor
 import joblib
 import pandas as pd
+from sklearn.base import BaseEstimator
 from sklearn.utils.validation import check_is_fitted
 
 AGWRAPPERDIR = 'ag_wrapper'
 AGWRAPPERFILE = 'ag_wrapper.joblib'
 
 
-class TabularPredictorWrapper():
+class TabularPredictorWrapper(BaseEstimator):
     def __init__(self,
                  label='y',
                  problem_type=None,
@@ -161,10 +162,12 @@ class TabularPredictorWrapper():
 
     def predict_proba(self, data, model=None, as_pandas=True, as_multiclass=True):
         check_is_fitted(self)
-        return self._predictor.predict(data, model=model, as_pandas=as_pandas, as_multiclass=as_multiclass)
+        return self._predictor.predict_proba(data, model=model, as_pandas=as_pandas, as_multiclass=as_multiclass)
 
-    def evaluate(self, data, model=None, silent=False, auxiliary_metrics=True, detailed_report=False) -> dict:
+    def evaluate(self, X, y,
+                 model=None, silent=False, auxiliary_metrics=True, detailed_report=False) -> dict:
         check_is_fitted(self)
+        data = self.__create_data(X, y)
         return self._predictor.evaluate(data, model=model, silent=silent,
                                         auxiliary_metrics=auxiliary_metrics,
                                         detailed_report=detailed_report)
@@ -198,8 +201,9 @@ class TabularPredictorWrapper():
     def transform_labels(self, labels, inverse=False, proba=False):
         return self._predictor.transform_labels(labels, inverse=inverse, proba=proba)
 
-    def feature_importance(self, data=None, model=None, features=None, feature_stage='original', subsample_size=1000, time_limit=None, num_shuffle_sets=None, include_confidence_band=True, silent=False):
+    def feature_importance(self, X=None, y=None, model=None, features=None, feature_stage='original', subsample_size=1000, time_limit=None, num_shuffle_sets=None, include_confidence_band=True, silent=False):
         check_is_fitted(self)
+        data = self.__create_data(X, y)
         return self._predictor.feature_importance(data=data, model=model, features=features, feature_stage=feature_stage,
                                                   subsample_size=subsample_size, time_limit=time_limit,
                                                   num_shuffle_sets=num_shuffle_sets,
@@ -300,7 +304,7 @@ class TabularPredictorWrapper():
         self.__save_ag_wrapper_object()
 
     @classmethod
-    def load(cls, path: str, verbosity: int = None):
+    def load(cls, path: str, verbosity: int = None) -> 'TabularPredictorWrapper':
         ag_wrapper_file_path = os.path.join(path, AGWRAPPERDIR, AGWRAPPERFILE)
         tabular_predictor_wrapper = joblib.load(ag_wrapper_file_path)
         _predictor = TabularPredictor.load(path=path, verbosity=verbosity)

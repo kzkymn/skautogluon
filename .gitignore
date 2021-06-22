@@ -131,6 +131,8 @@ dmypy.json
 # misc
 *.joblib
 *.pkl
+*.bin
+*.npz
 *.params
 *.html
 
