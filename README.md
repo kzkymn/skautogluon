@@ -4,7 +4,7 @@ The goals of this project are to create wrappers for the classes of AutoGluon su
 
 ## installing
 
-To install autogluon-wrapper,
+To install autogluon-wrapper, execute the following command in your python environment.
 
 ```bash
 pip install git+https://github.com/kzkymn/autogluon-wrapper.git#egg=autogluon-wrapper
