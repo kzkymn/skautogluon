@@ -1,18 +1,21 @@
-# To add a new cell, type '# %%'
-# To add a new markdown cell, type '# %% [markdown]'
+# The purpose of this code is to show that autogluon-wrapper can
+# do the same thing as the original AutoGluon can.
+# Therefore, much of this code is almost same as that of AutoGluon Quickstart.
 # %%
 from agwrapper import TabularPredictorWrapper
 import sklearn.datasets
 from sklearn.model_selection import train_test_split
 
 # %%
-# load datasets same as train.csv and test.csv in https://autogluon.s3.amazonaws.com/datasets/Inc/
+# Reading the data that is equivalent to train.csv in AutoGluon Quickstart.
 X, y = sklearn.datasets.fetch_openml(data_id=179, return_X_y=True)
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.33, random_state=42)
 
 # %%
+# Unlike the original TabularPredictor, it is not necessary to explicitly pass
+# the label name of the target variable as the constructor argument of TabularPredictorWrapper.
 save_path = 'agModels-predictClass'
 predictor = TabularPredictorWrapper(path=save_path).fit(X_train, y_train)
 
@@ -20,6 +23,7 @@ predictor = TabularPredictorWrapper(path=save_path).fit(X_train, y_train)
 results = predictor.fit_summary()
 
 # %%
+# From TabularPredictorWrapper, You can refer to some properties the original TabularPredictor has.
 print("AutoGluon infers problem type is: ", predictor.problem_type)
 print("AutoGluon identified the following types of features:")
 print(predictor.feature_metadata)
