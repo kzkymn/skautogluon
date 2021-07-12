@@ -98,7 +98,7 @@ class TabularPredictorWrapper(BaseEstimator):
             raise ValueError(
                 'If you set the value of tuning_X, you must set the value of tuning_y.')
         data = X.copy()
-        data[self._label] = y
+        data[self.label] = y
         return data
 
     def fit(self, X, y,
@@ -109,8 +109,8 @@ class TabularPredictorWrapper(BaseEstimator):
             hyperparameters=None,
             feature_metadata='infer',
             **kwargs):
-        self._label = self.__create_y_label(X)
-        self._predictor = TabularPredictor(self._label,
+        self.label = self.__create_y_label(X)
+        self._predictor = TabularPredictor(self.label,
                                            problem_type=self._problem_type,
                                            eval_metric=self._eval_metric,
                                            path=self._path,
