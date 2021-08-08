@@ -2,6 +2,9 @@
 
 The goals of this project are to create wrappers for the classes of AutoGluon such as TabularPredictor to achieve compatibility with the classifiers and the regressors of scikit-learn.
 
+**!!!FUTUREWARNING!!!**  
+**autogluon-wrapper will be renamed to Scikit-AutoGluon when released version 2.0 on 8/14/2021. The reason for the name change is to help you better understand the purpose of this project.**
+
 ## installing
 
 To install autogluon-wrapper, execute the following command in your python environment.
@@ -9,6 +12,9 @@ To install autogluon-wrapper, execute the following command in your python envir
 ```bash
 pip install git+https://github.com/kzkymn/autogluon-wrapper.git#egg=autogluon-wrapper
 ```
+
+**!!!FUTUREWARNING!!!**  
+**At the next version 0.2, agwrapper will be renamed skautogluon.**
 
 ## how to use
 
