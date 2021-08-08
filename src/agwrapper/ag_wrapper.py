@@ -1,6 +1,8 @@
 from copy import copy
 import os
 from typing import Dict, List, Optional, Union
+import warnings
+
 from autogluon.tabular import TabularPredictor
 import joblib
 import pandas as pd
@@ -9,6 +11,10 @@ from sklearn.utils.validation import check_is_fitted
 
 AGWRAPPERDIR = 'ag_wrapper'
 AGWRAPPERFILE = 'ag_wrapper.joblib'
+
+warnings.warn(
+    'At the next version 0.2, agwrapper will be renamed as skautogluon so that the purpose of the library could be better understood.',
+    FutureWarning)
 
 
 class TabularPredictorWrapper(BaseEstimator):
