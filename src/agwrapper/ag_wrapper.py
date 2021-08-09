@@ -13,7 +13,7 @@ AGWRAPPERDIR = 'ag_wrapper'
 AGWRAPPERFILE = 'ag_wrapper.joblib'
 
 warnings.warn(
-    'At the next version 0.2, agwrapper will be renamed as skautogluon so that the purpose of the library could be better understood.',
+    'At the next version 0.1, agwrapper will be renamed as skautogluon so that the purpose of the library could be better understood.',
     FutureWarning)
 
 
