@@ -12,16 +12,18 @@ from shutil import rmtree
 from setuptools import find_packages, setup, Command
 
 # Package meta-data.
-NAME = 'autogluon-wrapper'
-DESCRIPTION = 'The goals of this project are to create wrappers for the classes of AutoGluon such as TabularPredictor to achieve compatibility with the classifiers and the regressors of scikit-learn.'
-URL = 'https://github.com/kzkymn/autogluon-wrapper'
-EMAIL = 'me@example.com'
+NAME = 'skautogluon'
+DESCRIPTION = 'The goal of this project is to make AutoGluon predictor classes available with the same API as scikit-learn classifiers and regressors.'
+URL = 'https://github.com/kzkymn/skautogluon'
+EMAIL = 'kazyama@gmail.com'
 AUTHOR = 'kzkymn'
 REQUIRES_PYTHON = '>=3.7.0'
-VERSION = '0.0.1'
+VERSION = '0.1'
+
 
 def _requires_from_file(filename):
     return open(filename).read().splitlines()
+
 
 EXTRAS = {
     # 'fancy feature': ['django'],
@@ -77,7 +79,8 @@ class UploadCommand(Command):
             pass
 
         self.status('Building Source and Wheel (universal) distribution…')
-        os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
+        os.system(
+            '{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
 
         self.status('Uploading the package to PyPI via Twine…')
         os.system('twine upload dist/*')

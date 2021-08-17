@@ -2,7 +2,7 @@
 # do the same thing as the original AutoGluon can.
 # Therefore, much of this code is almost same as that of AutoGluon Quickstart.
 # %%
-from agwrapper import TabularPredictorWrapper
+from skautogluon import TabularPredictorWrapper
 import sklearn.datasets
 from sklearn.model_selection import train_test_split
 

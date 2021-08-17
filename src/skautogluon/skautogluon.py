@@ -1,7 +1,6 @@
 from copy import copy
 import os
 from typing import Dict, List, Optional, Union
-import warnings
 
 from autogluon.tabular import TabularPredictor
 import joblib
@@ -9,12 +8,8 @@ import pandas as pd
 from sklearn.base import BaseEstimator
 from sklearn.utils.validation import check_is_fitted
 
-AGWRAPPERDIR = 'ag_wrapper'
-AGWRAPPERFILE = 'ag_wrapper.joblib'
-
-warnings.warn(
-    'At the next version 0.1, agwrapper will be renamed as skautogluon so that the purpose of the library could be better understood.',
-    FutureWarning)
+SKAUTOGLUONDIR = 'sk_autogluon'
+SKAUTOGLUONFILE = 'sk_autogluon.joblib'
 
 
 class TabularPredictorWrapper(BaseEstimator):
@@ -150,7 +145,7 @@ class TabularPredictorWrapper(BaseEstimator):
             raise ValueError('Type of presets must be list str or dict.')
 
         self._is_fitted_ = True
-        self.__save_ag_wrapper_object()
+        self.__save_sk_autogluon_object()
 
         return self
 
@@ -296,23 +291,25 @@ class TabularPredictorWrapper(BaseEstimator):
         check_is_fitted(self)
         return self._predictor.plot_ensemble_model(prune_unused_nodes=prune_unused_nodes)
 
-    def __save_ag_wrapper_object(self):
-        ag_wrapper_dump_dir = os.path.join(self._predictor.path, AGWRAPPERDIR)
-        os.makedirs(ag_wrapper_dump_dir, exist_ok=True)
-        ag_wrapper_file_path = os.path.join(
-            ag_wrapper_dump_dir, AGWRAPPERFILE)
+    def __save_sk_autogluon_object(self):
+        sk_autogluon_dump_dir = os.path.join(
+            self._predictor.path, SKAUTOGLUONDIR)
+        os.makedirs(sk_autogluon_dump_dir, exist_ok=True)
+        sk_autogluon_file_path = os.path.join(
+            sk_autogluon_dump_dir, SKAUTOGLUONFILE)
         copy_self = copy(self)
         copy_self._predictor = None
-        joblib.dump(copy_self, ag_wrapper_file_path)
+        joblib.dump(copy_self, sk_autogluon_file_path)
 
     def save(self):
         self._predictor.save()
-        self.__save_ag_wrapper_object()
+        self.__save_sk_autogluon_object()
 
     @classmethod
-    def load(cls, path: str, verbosity: int = None) -> 'TabularPredictorWrapper':
-        ag_wrapper_file_path = os.path.join(path, AGWRAPPERDIR, AGWRAPPERFILE)
-        tabular_predictor_wrapper = joblib.load(ag_wrapper_file_path)
+    def load(cls, path: str, verbosity: int = None) -> 'TabularPredictor':
+        sk_autogluon_file_path = os.path.join(
+            path, SKAUTOGLUONDIR, SKAUTOGLUONFILE)
+        tabular_predictor_wrapper = joblib.load(sk_autogluon_file_path)
         _predictor = TabularPredictor.load(path=path, verbosity=verbosity)
         tabular_predictor_wrapper._predictor = _predictor
         return tabular_predictor_wrapper

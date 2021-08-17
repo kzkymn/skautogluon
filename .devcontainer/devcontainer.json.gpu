@@ -1,4 +1,4 @@
-{"name": "autogluon",
+{"name": "skautogluon",
     "context": "..",
     "dockerFile": "Dockerfile",
     "settings": {
@@ -15,8 +15,8 @@
         "ms-python.python",
         "ms-toolsai.jupyter",
     ],
-    "workspaceFolder": "/home/vscode",
-    "workspaceMount": "type=bind,source=${localWorkspaceFolder},target=/home/vscode/autogluon/,type=bind",
+    "workspaceFolder": "/home/vscode/skautogluon/",
+    "workspaceMount": "type=bind,source=${localWorkspaceFolder},target=/home/vscode/skautogluon/,type=bind",
     "runArgs": ["--gpus", "all"],
     "remoteUser": "vscode"
 }
