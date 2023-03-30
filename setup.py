@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# NOTE: This code is a modified version of the one presented at the following URL: https://github.com/kennethreitz/setup.py
+# The rights to the original code are in the public domain. I have checked that on March 30, 2023.
+
 # Note: To use the 'upload' functionality of this file, you must:
 #   $ pipenv install twine --dev
 
@@ -17,7 +20,7 @@ DESCRIPTION = 'The goal of this project is to make AutoGluon predictor classes a
 URL = 'https://github.com/kzkymn/skautogluon'
 EMAIL = 'kazyama@gmail.com'
 AUTHOR = 'kzkymn'
-REQUIRES_PYTHON = '>=3.7.0'
+REQUIRES_PYTHON = '>=3.8.0'
 VERSION = '0.1'
 
 
