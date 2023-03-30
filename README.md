@@ -42,8 +42,8 @@ If you need an entire code implementation example, please refer to `sample.py` i
 
 ## About Docker File Support
 
-Since the AutoGluon official provides a Dockerfile, this project will not provide a Dockerfile.
+Since the official of AutoGluon has provided its Dockerfile, this project has discontinued providing our original Dockerfile.
 
-For more details, please refer to the following link.
+For more details about the official Dockerfile, please refer to the following link.
 
 [https://hub.docker.com/r/autogluon/autogluon](https://hub.docker.com/r/autogluon/autogluon)
