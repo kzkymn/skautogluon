@@ -4,10 +4,10 @@ Scikit-AutoGluon project aims to provide a scikit-learn compatible API for AutoG
 
 ## installing
 
-To install Scikit-AutoGluon, first set up AutoGluon according to the following URL.  
+Before installing Scikit-AutoGluon, you need to create a conda environment with AutoGluon according to the following URL.  
 [https://auto.gluon.ai/stable/install.html](https://auto.gluon.ai/stable/install.html)
 
-Next, run the following command in a python environment (e.g. a conda environment with AutoGluon installed).
+Next, please run the following command in the environment you created.
 
 ```bash
 pip install git+https://github.com/kzkymn/skautogluon.git#egg=skautogluon
@@ -38,7 +38,7 @@ predictor = TabularPredictorWrapper(path=save_path).fit(X_train, y_train)
 
 With skautogluon, you can incorporate AutoGluon's learning logics into your codes that are supposed to work with the scikit-learn frameworks, such as Pipeline.
 
-If you need an entire code implementation example, please refer to `sample.py` in this project.
+If you need an entire code example, please refer to `sample.py` and/or `regression_sample.py` in this project.
 
 ## About Docker File Support
 
