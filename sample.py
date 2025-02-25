@@ -1,27 +1,23 @@
 # %%
 # Import required libraries
-from autogluon.tabular import TabularDataset
-from skautogluon import TabularPredictorWrapper
 import numpy as np
 import pandas as pd
+from autogluon.tabular import TabularDataset
 from sklearn.model_selection import train_test_split
 
+from skautogluon import TabularPredictorWrapper
+
 # Create sample data
-train_data = TabularDataset(
-    'https://autogluon.s3.amazonaws.com/datasets/Inc/train.csv')
-X_train = train_data.drop(columns='class')
-y_train = train_data['class']
+train_data = TabularDataset("https://autogluon.s3.amazonaws.com/datasets/Inc/train.csv")
+X_train = train_data.drop(columns="class")
+y_train = train_data["class"]
 
-test_data = TabularDataset(
-    'https://autogluon.s3.amazonaws.com/datasets/Inc/test.csv')
-X_test = train_data.drop(columns='class')
-y_test = train_data['class']
+test_data = TabularDataset("https://autogluon.s3.amazonaws.com/datasets/Inc/test.csv")
+X_test = test_data.drop(columns="class")
+y_test = test_data["class"]
 
-save_path = 'agModels-predictClass'
+save_path = "agModels-predictClass"
 predictor = TabularPredictorWrapper(path=save_path).fit(X_train, y_train)
-
-# Create a linear regression model
-predictor = TabularPredictorWrapper()
 
 # Fit the model to the training data
 predictor.fit(X_train, y_train)
