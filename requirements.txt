@@ -1,1 +1,11 @@
-autogluon==0.7.0
+autogluon==1.2
+autogluon.common==1.2
+autogluon.core==1.2
+autogluon.features==1.2
+autogluon.multimodal==1.2
+autogluon.tabular==1.2
+autogluon.timeseries==1.2
+joblib==1.4.2
+pandas==2.2.3
+scikit-learn==1.5.2
+numpy==1.26.4
